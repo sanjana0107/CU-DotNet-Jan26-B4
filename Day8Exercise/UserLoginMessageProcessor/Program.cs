@@ -8,7 +8,7 @@
             string input=Console.ReadLine();
             string[] inputs = input.Split('|', StringSplitOptions.TrimEntries);
             string loginMessage=inputs[1].ToLower();
-            string status;
+            string status= string.Empty;
             if (loginMessage.Contains("successful"))
             {
                 status="LOGIN SUCCESS(CUSTOM MESSAGE)";            
