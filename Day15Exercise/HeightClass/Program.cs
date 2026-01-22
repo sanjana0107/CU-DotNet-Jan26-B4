@@ -8,7 +8,7 @@
 
 
 
-        public string AddHeights(Height h2)
+        public Height AddHeights(Height h2)
         {
             int feet = this.Feet + h2.Feet;
             double inches = this.Inches + h2.Inches;
@@ -17,7 +17,9 @@
                 feet++;
                 inches = inches - 12;
             }
-            return $"{feet} feet{inches} inches";
+            Height added= new Height(feet, inches);
+            return added;
+            
 
         }
 
@@ -56,8 +58,8 @@
             Console.WriteLine(person1);
             Console.WriteLine(person2);
             Console.WriteLine(person3);
-            string AddedHeights = person1.AddHeights(person2);
-            Console.WriteLine(AddedHeights);
+            Height AddedHeights = person1.AddHeights(person2);
+            Console.WriteLine($"Added heights are {AddedHeights}");
         
 
 
