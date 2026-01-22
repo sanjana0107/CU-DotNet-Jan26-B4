@@ -16,6 +16,7 @@
                 else
                 {
                     Console.WriteLine("Invalid input, Please do re-entry for the same day");
+                    break;
                 }
                 sum = sum + sales[i];
             }
