@@ -1,0 +1,29 @@
+    public static int getTotalX(List<int> a, List<int> b)
+    {
+        int count=0;
+        List<int> nums=[];
+        for(int i=a.Max();i<=b.Min();i++){
+            bool isValid=true;
+            
+            foreach(var item in a)
+            if(i%item!=0)
+                isValid=false;
+            if(isValid)
+            nums.Add(i);
+        }  
+            
+        
+        for(int j=0;j<nums.Count;j++){
+            bool isValid=true;
+            
+            foreach (var item in b)
+            if(item%nums[j]!=0)
+                isValid=false;
+            if(isValid)
+            count++;
+        }
+        return count;
+        
+
+    }
+
