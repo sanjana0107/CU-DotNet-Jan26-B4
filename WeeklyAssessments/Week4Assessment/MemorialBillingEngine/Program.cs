@@ -80,6 +80,7 @@
                     count++;
             return count;
         }
+    }
         internal class Program
         {
             static void Main(string[] args)
@@ -104,4 +105,4 @@
             }
 
         }
-    }
+    
