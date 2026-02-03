@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="HighScoreLeaderBoard/HighScoreLeaderBoard.csproj" />
+  <Project Path="LegacyEmployeeDirectory/LegacyEmployeeDirectory.csproj" />
+</Solution>
