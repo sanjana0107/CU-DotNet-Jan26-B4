@@ -11,7 +11,7 @@
             return BaseFee;
         }
 
-       
+
     }
 
     class Inpatient : Patient
@@ -81,28 +81,28 @@
             return count;
         }
     }
-        internal class Program
+    internal class Program
+    {
+        static void Main(string[] args)
         {
-            static void Main(string[] args)
-            {
-                HospitalBilling billing = new HospitalBilling();
-                billing.AddPatient(new Patient { Name = "Riya", BaseFee = 700 });
-                billing.AddPatient(new Patient { Name = "Siya", BaseFee = 1000 });
-                billing.AddPatient(new Inpatient { Name = "Priya", BaseFee = 1000, DaysStayed = 12, DailyRate = 450.78m });
-                billing.AddPatient(new Outpatient { Name = "Samridhi", BaseFee = 2300, ProcedureFee = 4500 });
-                billing.AddPatient(new EmergencyPatient { Name = "Shruti", BaseFee = 2300, SeverityLevel=5});
-                billing.AddPatient(new EmergencyPatient { Name = "Rahul", BaseFee = 2300, SeverityLevel = 3 });
-                
-                Console.WriteLine("Daily report: ");
-                Console.WriteLine("---------------------------------");
-                billing.GenerateDailyReport();
-                Console.WriteLine("---------------------------------");
-                Console.WriteLine($"Inpatient Count: {billing.GetInpatientCount()}");
-                Console.WriteLine("---------------------------------");
-                Console.WriteLine($"Total revenue is: {billing.CalculateTotalRevenue()}");
-            }
-                
-            }
+            HospitalBilling billing = new HospitalBilling();
+            billing.AddPatient(new Patient { Name = "Riya", BaseFee = 700 });
+            billing.AddPatient(new Patient { Name = "Siya", BaseFee = 1000 });
+            billing.AddPatient(new Inpatient { Name = "Priya", BaseFee = 1000, DaysStayed = 12, DailyRate = 450.78m });
+            billing.AddPatient(new Outpatient { Name = "Samridhi", BaseFee = 2300, ProcedureFee = 4500 });
+            billing.AddPatient(new EmergencyPatient { Name = "Shruti", BaseFee = 2300, SeverityLevel = 5 });
+            billing.AddPatient(new EmergencyPatient { Name = "Rahul", BaseFee = 2300, SeverityLevel = 3 });
 
+            Console.WriteLine("Daily report: ");
+            Console.WriteLine("---------------------------------");
+            billing.GenerateDailyReport();
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine($"Inpatient Count: {billing.GetInpatientCount()}");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine($"Total revenue is: {billing.CalculateTotalRevenue()}");
         }
-    
+
+    }
+
+}
+

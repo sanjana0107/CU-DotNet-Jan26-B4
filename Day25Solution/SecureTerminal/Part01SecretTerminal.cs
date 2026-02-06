@@ -1,6 +1,6 @@
 ﻿namespace SecureTerminal
 {
-    internal class Program
+    internal class Part01SecretTerminal
     {
         static void Main(string[] args)
         {

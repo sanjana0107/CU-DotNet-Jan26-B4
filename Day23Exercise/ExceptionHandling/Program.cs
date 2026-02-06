@@ -44,7 +44,7 @@
                 int[] arr = [];
                 Console.Write("Enter the index you want to access");
                 int index = int.Parse(Console.ReadLine());
-                if (index < arr.Length)
+                if (index > arr.Length)
                     throw new IndexOutOfRangeException("index out of range in array");
                 Console.WriteLine(arr[index]);
             }
@@ -99,10 +99,6 @@
                 }
             }
         }
-
-
-
-
         static void Main(string[] args)
         {
             try

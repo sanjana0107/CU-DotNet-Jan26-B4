@@ -49,10 +49,8 @@
             ApplicationConfig.ApplicationName = "NewApp";
             ApplicationConfig.Initialize("WhatsApp", "Prod");
             Console.WriteLine(ApplicationConfig.GetConfigurationSummary());
-            Console.WriteLine();
-            ApplicationConfig.ResetConfiguration();
             Console.WriteLine(ApplicationConfig.GetConfigurationSummary());
-            
+
 
 
         }
