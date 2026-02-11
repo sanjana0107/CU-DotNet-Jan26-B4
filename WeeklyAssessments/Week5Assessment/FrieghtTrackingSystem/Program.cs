@@ -147,7 +147,7 @@ namespace FrieghtTrackingSystem
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error occured");
+                    Console.WriteLine("Error occured" + ex.Message);
                 }
                 finally
                 {
