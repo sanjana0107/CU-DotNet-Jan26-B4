@@ -1,50 +1,80 @@
-﻿namespace HangManProb
+﻿using System.Threading.Channels;
+
+namespace HangManProb
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string[] words = { "Bicycle", "Mango", "entique ", "Petal", "Echo" };
-            int lives = 6;
-            List<char> letters = new List<char>();
+            string[] words = { "Bicycle", "Mango", "Antique", "Petal", "Echo" };
+
             Random random = new Random();
             int index = random.Next(words.Length);
-            string guessedWord = words[index];
-            Console.Write("Guessed Word: ");
-            char[] guessedChar = new char[guessedWord.Length];
-            for (int i = 0; i < guessedWord.Length; i++)
+
+            int lives = 6;
+            List<char> guessedLetters = new List<char>();
+            string guessedWord = words[index].ToUpper().Trim();
+            
+            char[] displayWord = new char[guessedWord.Length];
+
+
+            for (int i = 0; i < displayWord.Length; i++)
             {
-                Console.Write("_ ");
+                displayWord[i] = '_';
             }
 
-            Console.WriteLine();
-            Console.WriteLine($"Lives left: {lives}");
-            while ( lives > 0 )
+
+            while (lives > 0)
             {
+                Console.WriteLine("Word: " + string.Join(" ", displayWord));
+                Console.WriteLine("Guessed letters : " + string.Join(" ", guessedLetters));
+                Console.WriteLine($"Lives left: {lives}");
+
+
                 Console.Write("Enter a letter: ");
-                char c = char.Parse(Console.ReadLine().ToUpper());
-                if (char.IsLetter(c))
+                string input = Console.ReadLine().ToUpper();
+
+                if (input.Length == 1 && char.IsLetter(input[0]))
                 {
-                    for (int i = 0; i < guessedWord.Length; i++)
+                    char c = input[0];
+
+                    if (guessedLetters.Contains(c))
+                    {
+                        Console.WriteLine("Already guessed!");
+                        continue;
+                    }
+                    guessedLetters.Add(c);
+
+                    bool correctGuess = false;
+
+                    for(int i = 0; i < guessedWord.Length; i++)
                     {
                         if (guessedWord[i] == c)
                         {
-                            guessedChar[i] = c;
+                            displayWord[i] = c;
+                            correctGuess = true;
                         }
+                    }
+
+                    if (!correctGuess)
+                    {
+                        lives--;
+                        Console.WriteLine("wrong guess!");
+                    }
+
+                    if (!displayWord.Contains('_'))
+                    {
+                        Console.WriteLine("Correct word guessed! The word was :" + guessedWord);
+                        return;
                     }
                 }
                 else
                 {
-                    letters.Add(c);
-                    Console.WriteLine($"Guessed Letters: {string.Join(',', letters).ToString()}");
-                    lives--;
-                    Console.WriteLine($"Lives left: {lives}");
+                    Console.WriteLine("Enter a valid letter.");
                 }
-
-                }
-
-                
             }
+            Console.WriteLine("Zero lives. You lost! The word was "+ guessedWord);
         }
     }
+}
 
