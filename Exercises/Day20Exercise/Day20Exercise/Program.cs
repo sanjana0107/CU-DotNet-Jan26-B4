@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Day19SortComparer
+namespace Day20Exercise
 {
     class Flight : IComparable<Flight>
     {
@@ -69,7 +69,7 @@ namespace Day19SortComparer
             Console.WriteLine("Economy View: ");
             foreach (var item in flights)
             {
-                
+
                 Console.WriteLine(item);
             }
             Console.WriteLine();
@@ -77,20 +77,19 @@ namespace Day19SortComparer
             Console.WriteLine("Business Runner View: ");
             foreach (var item in flights)
             {
-                
+
                 Console.WriteLine(item);
             }
             Console.WriteLine();
             flights.Sort(new DepartureComparer());
-            Console.WriteLine("Early bird View:");  
+            Console.WriteLine("Early bird View:");
             foreach (var item in flights)
             {
-                 
+
                 Console.WriteLine(item);
 
             }
             Console.WriteLine();
-
         }
     }
 }
