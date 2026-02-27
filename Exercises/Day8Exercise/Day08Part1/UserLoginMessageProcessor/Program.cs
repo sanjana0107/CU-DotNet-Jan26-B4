@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter username and Login message");
+            Console.WriteLine($"Enter username and Login message separated by | ");
             string input=Console.ReadLine();
             string[] inputs = input.Split('|', StringSplitOptions.TrimEntries);
             string loginMessage=inputs[1].ToLower();
