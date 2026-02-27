@@ -31,7 +31,7 @@ namespace Day27Solution
             List<Loan> loans = new List<Loan>();
             Loan l1 = new Loan
             {
-                ClientName= "Ramesh",
+                ClientName = "Ramesh",
                 Principal = 45000,
                 InterestRate = 15
             };
@@ -56,13 +56,23 @@ namespace Day27Solution
             string path = directory + file;
             using (StreamWriter sw = new StreamWriter(path, true))
             {
-                string line = Console.ReadLine();
-                sw.WriteLine(line);
+                Console.Write("Enter Client Name: ");
+                string name = Console.ReadLine();
+
+                Console.Write("Enter Principal Amount: ");
+                double principal = double.Parse(Console.ReadLine());
+
+                Console.Write("Enter Interest Rate: ");
+                double interest = double.Parse(Console.ReadLine());
+
+                sw.WriteLine($"{name},{principal},{interest}");
+
+
             }
 
             using (StreamReader sr = new StreamReader(path))
             {
-                   
+
                 string? line;
                 double principal;
                 double interest;
@@ -83,7 +93,7 @@ namespace Day27Solution
                             ClientName = name,
                             Principal = principal,
                             InterestRate = interest
-  
+
                         };
                         loans.Add(loan);
                     }
@@ -95,8 +105,8 @@ namespace Day27Solution
                     {
                         Console.WriteLine("ERROR");
                     }
-                                
-                                      
+
+
                 }
                 Console.OutputEncoding = Encoding.UTF8;
 
@@ -104,8 +114,8 @@ namespace Day27Solution
                 Console.WriteLine("------------------------------------------------------------------------------------");
                 foreach (var item in loans)
                 {
-                Console.WriteLine($"{item.ClientName,-20}|{item.Principal,-25:C}|{item.CalculateInterestAmt(),-20:C}|{item.GetRiskLevel(),-10}");
-                    
+                    Console.WriteLine($"{item.ClientName,-20}|{item.Principal,-25:C}|{item.CalculateInterestAmt(),-20:C}|{item.GetRiskLevel(),-10}");
+
                 }
             }
 
