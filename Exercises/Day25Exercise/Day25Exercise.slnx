@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Day25Exercise/CSVFile.csproj" />
+  <Project Path="ReadKeyRead/ReadKeyRead.csproj" />
+</Solution>
