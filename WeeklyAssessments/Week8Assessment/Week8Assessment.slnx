@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="PrecisionTest/PrecisionTest.csproj" />
+  <Project Path="Week8Assessment/Week8Assessment.csproj" />
+</Solution>
