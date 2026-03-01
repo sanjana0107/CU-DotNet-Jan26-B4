@@ -1,0 +1,85 @@
+PORTFOLIO REPORT
+Report Generated on 02-03-2026 00:21:51
+
+Total portfolio value: Name - HDFc
+, Currency - INR
+, purchase date - 21-02-2025 00:00:00
+Market Price - 1300,Quantity - 34Total current value - ₹ 44,200.00
+Total portfolio value: Name - HAL
+, Currency - INR
+, purchase date - 12-12-2024 00:00:00
+Market Price - 4300,Quantity - 12Total current value - ₹ 51,600.00
+Total portfolio value: Name - IFY
+, Currency - INR
+, purchase date - 12-01-2025 00:00:00
+Market Price - 80,Quantity - 22Total current value - ₹ 1,760.00
+PORTFOLIO REPORT
+Report Generated on 02-03-2026 00:23:27
+
+Total portfolio value: Name - HDFc
+ Currency - INR
+ purchase date - 21-02-2025 00:00:00
+Market Price - 1300
+Quantity - 34
+Total current value - ₹ 44,200.00
+Total portfolio value: Name - HAL
+ Currency - INR
+ purchase date - 12-12-2024 00:00:00
+Market Price - 4300
+Quantity - 12
+Total current value - ₹ 51,600.00
+Total portfolio value: Name - IFY
+ Currency - INR
+ purchase date - 12-01-2025 00:00:00
+Market Price - 80
+Quantity - 22
+Total current value - ₹ 1,760.00
+
+PORTFOLIO REPORT
+Report Generated on 02-03-2026 00:24:44
+
+Total portfolio value: 
+Name - HDFc
+Currency - INR
+purchase date - 21-02-2025 00:00:00
+Market Price - 1300
+Quantity - 34
+Total current value - ₹ 44,200.00
+Total portfolio value: 
+Name - HAL
+Currency - INR
+purchase date - 12-12-2024 00:00:00
+Market Price - 4300
+Quantity - 12
+Total current value - ₹ 51,600.00
+Total portfolio value: 
+Name - IFY
+Currency - INR
+purchase date - 12-01-2025 00:00:00
+Market Price - 80
+Quantity - 22
+Total current value - ₹ 1,760.00
+PORTFOLIO REPORT
+Report Generated on 02-03-2026 00:25:12
+
+Total portfolio value: 
+Name - HDFc
+Currency - INR
+purchase date - 21-02-2025 00:00:00
+Market Price - 1300
+Quantity - 34
+Total current value - ₹ 44,200.00
+Total portfolio value: 
+Name - HAL
+Currency - INR
+purchase date - 12-12-2024 00:00:00
+Market Price - 4300
+Quantity - 12
+Total current value - ₹ 51,600.00
+Total portfolio value: 
+Name - IFY
+Currency - INR
+purchase date - 12-01-2025 00:00:00
+Market Price - 80
+Quantity - 22
+Total current value - ₹ 1,760.00
