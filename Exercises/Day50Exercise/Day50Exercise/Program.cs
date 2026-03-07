@@ -11,13 +11,12 @@
             StudId = id;
             SName = name;
         }
-
     }
-           
+
     class ManageData
     {
         public Dictionary<Student, int> studentData = new Dictionary<Student, int>();
-        
+
         public void AddStudent(Student stud, int marks)
         {
             if (!studentData.ContainsKey(stud))
@@ -35,29 +34,21 @@
                 Console.WriteLine($"Name - {item.Key.SName} Marks - {item.Value}");
             }
         }
-
     }
     internal class Program
     {
-        
         static void Main(string[] args)
         {
             Student s1 = new Student(1, "Aman");
 
             ManageData md = new ManageData();
-            md.AddStudent(s1, 56);            
-           
+            md.AddStudent(s1, 56);
+
             md.AddStudent(new Student(2, "Riya"), 75);
-            
+
             md.AddStudent(s1, 95);
 
             md.ShowData();
-
-            
-
-            
-            
-            
         }
     }
 }
