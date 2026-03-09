@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Account Opening Form</h2>
+    <form>
+    <table>       
+        <tr>
+            <td>
+                <label>Select</label>
+            </td>
+            <td>
+                <input type="radio" name="title" id="Miss" value="Miss"><label for="Miss">Miss</label>
+                <input type="radio" name="title" id="Mr" value="Mr"><label for="Mr.">Mr.</label>
+                <input type="radio" name="title" id="Mrs" value="Mrs"><label for="Mrs.">Mrs.</label>
+            </td>
+        </tr>
+               
+        <tr>
+            <td>
+                <label>Enter your Name</label> 
+            </td>
+            <td>
+                <input type ="text" placeholder="Enter your name" name = "ename" id = "ename" >
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Occupation</label>
+            </td>
+            <td>
+                <input type="text" name="occupation" id="occupation" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Mobile number</label>
+            </td>
+            <td>
+                <input type="text" placeholder="1234567890" id="number" name="number" required>
+            </td>
+        </tr>
+        <tr>
+            <td> <label>Gender</label></td>  
+            <td>
+                <input type="radio" name="gender" id="male" value="M"><label for="male">Male</label>
+                <input type="radio" name="gender"id="female" value="F"><label for="female">Female</label>
+                
+            </td>         
+        </tr>
+        <tr>
+            <td>
+                <label>Enter your Age</label>
+            </td> 
+            <td>
+                <input type ="number" name="age" id="age" min=15 max=45 required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Account Type</label> 
+            </td>
+            <td>
+                <select name="type" id = "type">
+                    <option value="">Select</option>
+                    <option value="1">Saving</option>
+                    <option value="2">Current</option>
+                    <option value="3">Fixed Deposit</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Enter your DOB</label>
+            </td>
+            <td>
+                <input type="date" name="dob" id="dob" max="2026-03-03">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Enter your PAN</label>
+            </td>
+            <td>
+                <input type="text" placeholder="ABCDE1234E" name="PAN" id="PAN" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" required>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="checkbox" name="confirm" id="confirm"><label>I confirm that the above details provided are correct.</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type = "submit">
+                <input type = "reset" >
+            </td>
+        </tr>        
+    </table>
+    </form>    
+</body>
+</html>
