@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function calculateSum() {
+        let num1 = document.getElementById("num1");
+        let num2 = document.getElementById("num2");
+
+        let val1 = num1.value;
+        let val2 = num2.value;
+
+        num1 = Number(val1);
+        num2 = Number(val2);
+
+        let result = num1 + num2;
+
+        document.getElementById("result").value = result;
+
+        if (isNaN(result)) result.style.backgroundColor = "orange";
+        else result.style.backgroundColor = "white";
+      }
+
+      function checkColor(id) {
+        let num = document.getElementById(id);
+
+        if (num.value === "") num.style.backgroundColor = "red";
+        else if (isNaN(num.value)) num.style.backgroundColor = "yellow";
+        else num.style.backgroundColor = "white";
+      }
+    </script>
+  </head>
+  <body>
+    <input
+      type="text"
+      id="num1"
+      name="num1"
+      onblur="checkColor(this.id)"
+      oninput="checkColor(this.id)"
+    />
+    <label for="add">+</label>
+    <input
+      type="text"
+      id="num2"
+      name="num2"
+      onblur="checkColor(this.id)"
+      oninput="checkColor(this.id)"
+    />
+    <button type="button" onclick="calculateSum()">=</button>
+    <input type="text" id="result" readonly />
+  </body>
+</html>
