@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function calculateEMI() {
+        let principal = parseFloat(document.getElementById("principal").value);
+        let interest = parseFloat(document.getElementById("interest").value);
+        let months = parseFloat(document.getElementById("months").value);
+
+        let monthlyDecimal = interest / 100 / 12;
+
+        let currentBalance = principal;
+
+        let emi =
+          (principal * monthlyDecimal * Math.pow(1 + monthlyDecimal, months)) /
+          (Math.pow(1 + monthlyDecimal, months) - 1);
+
+        let table = document.getElementById("scheduleBody");
+
+        for (let i = 1; i <= months; i++) {
+          let interestAmt = currentBalance * monthlyDecimal;
+          let principalAmt = emi - interestAmt;
+          let remaining = currentBalance - principalAmt;
+
+          let row = `
+                <tr >
+                    <td>${i}</td>
+                    <td>${currentBalance.toFixed(2)}</td>                    
+                    <td>${emi.toFixed(2)}</td>
+                    <td>${principalAmt.toFixed(2)}</td>
+                    <td>${interestAmt.toFixed(2)}</td>
+                    <td>${remaining.toFixed(2)}</td>
+                </tr>
+                `;
+          table.innerHTML += row;
+          currentBalance = remaining;
+        }
+      }
+    </script>
+
+    <style>
+      body {
+        padding: 20px 300px 0 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td><label for="principal">Principal</label></td>
+        <td><input type="number" id="principal" value="principal" /></td>
+      </tr>
+      <tr>
+        <td><label for="interest">Interest</label></td>
+        <td><input type="number" id="interest" value="interest" /></td>
+      </tr>
+      <tr>
+        <td><label for="months">Months</label></td>
+        <td><input type="number" id="months" value="months" /><br /></td>
+      </tr>
+    </table>
+    <button type="button" onclick="calculateEMI()">Calculate</button>
+    <table border="1" class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>SNO</th>
+          <th>Loan Left</th>
+          <th>EMI</th>
+          <th>Principal</th>
+          <th>Interest</th>
+          <th>Remaining Balance</th>
+        </tr>
+      </thead>
+      <tbody id="scheduleBody"></tbody>
+    </table>
+  </body>
+</html>
