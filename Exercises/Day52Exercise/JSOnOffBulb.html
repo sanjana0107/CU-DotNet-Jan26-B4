@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function turnOn() {
+        document.getElementById("bulb").src = "/BulbImages/bulbImgon.jpg";
+      }
+      function turnOff() {
+        document.getElementById("bulb").src = "/BulbImages/bulbImgoff.jpg";
+      }
+    </script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>
+          <button id="off" onclick="turnOff()">Turn Off</button>
+        </td>
+        <td>
+          <img
+            src="/BulbImages/bulbImgoff.jpg"
+            id="bulb"
+            width="100px"
+            height="150px"
+          />
+        </td>
+        <td>
+          <button id="on" onclick="turnOn()">Turn On</button>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
