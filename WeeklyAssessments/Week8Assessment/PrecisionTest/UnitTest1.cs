@@ -12,11 +12,6 @@ namespace PrecisionTest
             emp = new EmployeeBonus();
         }
 
-        //[Test]
-        //public void aadi()
-        //{
-        //    Assert.Pass();
-        //}
         [TestCase(500000,5,6,1.1,95,123200)]
         [TestCase(400000, 4, 8, 1.0, 80, 60480)]
         [TestCase(1000000, 5, 15, 1.5, 95, 280000)]
