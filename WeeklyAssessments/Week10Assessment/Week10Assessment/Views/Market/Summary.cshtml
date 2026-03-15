@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Summary";
+}
+
+<h1>Summary</h1>
+<div class="alert alert-primary" role="alert">
+    @ViewBag.MarketStatus
+</div>
+<div class="card" style="width: 18rem;">    
+    <div class="card-body">
+        <h5 class="card-title">Top Gainer</h5>
+        <p class="card-text">@ViewData["TopGainer"]</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>
+

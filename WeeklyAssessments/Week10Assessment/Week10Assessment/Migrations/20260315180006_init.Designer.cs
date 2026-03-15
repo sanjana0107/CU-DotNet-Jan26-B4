@@ -12,7 +12,7 @@ using Week10Assessment.Data;
 namespace Week10Assessment.Migrations
 {
     [DbContext(typeof(Week10AssessmentContext))]
-    [Migration("20260314064611_init")]
+    [Migration("20260315180006_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -48,6 +48,29 @@ namespace Week10Assessment.Migrations
                     b.ToTable("Account");
                 });
 
+            modelBuilder.Entity("Week10Assessment.Models.Asset", b =>
+                {
+                    b.Property<int>("AssetId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssetId"));
+
+                    b.Property<string>("AssetName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("AssetId");
+
+                    b.ToTable("Asset");
+                });
+
             modelBuilder.Entity("Week10Assessment.Models.Transaction", b =>
                 {
                     b.Property<int>("TransactionId")
@@ -56,7 +79,7 @@ namespace Week10Assessment.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"));
 
-                    b.Property<int?>("AccountId")
+                    b.Property<int>("AccountId")
                         .HasColumnType("int");
 
                     b.Property<double>("Amount")
@@ -82,9 +105,13 @@ namespace Week10Assessment.Migrations
 
             modelBuilder.Entity("Week10Assessment.Models.Transaction", b =>
                 {
-                    b.HasOne("Week10Assessment.Models.Account", null)
+                    b.HasOne("Week10Assessment.Models.Account", "Account")
                         .WithMany("transactions")
-                        .HasForeignKey("AccountId");
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("Week10Assessment.Models.Account", b =>

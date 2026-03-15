@@ -15,5 +15,6 @@ namespace Week10Assessment.Data
         }
 
         public DbSet<Week10Assessment.Models.Account> Account { get; set; } = default!;
+        public DbSet<Week10Assessment.Models.Asset> Asset { get; set; } = default!;
     }
 }
