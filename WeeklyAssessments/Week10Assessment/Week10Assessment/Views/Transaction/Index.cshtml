@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Week10Assessment.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Transaction Details</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-hover">
+    <thead class="table table-dark">
+        <tr>
+            <th>Account Number</th>
+            <th>@Html.DisplayNameFor(m => m.Date)</th>
+            <th>@Html.DisplayNameFor(m => m.Description)</th>
+            <th>@Html.DisplayNameFor(m => m.Category)</th>
+            <th>@Html.DisplayNameFor(m => m.Amount)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(item.Account != null ? item.Account.AccountNumber.ToString() : item.AccountId.ToString())</td>
+                <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TransactionId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.TransactionId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TransactionId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

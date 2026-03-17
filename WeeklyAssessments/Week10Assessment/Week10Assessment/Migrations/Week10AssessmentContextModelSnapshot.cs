@@ -42,6 +42,9 @@ namespace Week10Assessment.Migrations
 
                     b.HasKey("AccountId");
 
+                    b.HasIndex("AccountNumber")
+                        .IsUnique();
+
                     b.ToTable("Account");
                 });
 

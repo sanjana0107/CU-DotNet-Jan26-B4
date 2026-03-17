@@ -9,6 +9,10 @@ namespace Week10Assessment.Controllers
     public class PortfolioController : Controller
     {
         private static List<Asset> _assets = new List<Asset>();
+
+        // expose assets for other controllers (read-only)
+        public static IReadOnlyList<Asset> Assets => _assets;
+
         // GET: PortfolioController
         public ActionResult Index()
         {
@@ -32,6 +36,7 @@ namespace Week10Assessment.Controllers
         // POST: PortfolioController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public ActionResult Create(Asset asset)
         {
             _assets.Add(asset);

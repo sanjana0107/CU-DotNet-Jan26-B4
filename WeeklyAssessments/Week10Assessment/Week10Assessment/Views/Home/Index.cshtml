@@ -2,7 +2,71 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total Asset Value</h5>
+                <p class="card-text display-6">@ViewData["TotalAssetValue"]</p>
+                <a href="~/Portfolio" class="btn btn-light btn-sm">View Assets</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Assets Value Breakdown</h5>
+                <canvas id="assetsChart" width="600" height="300"></canvas>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script>
+        // labels and data provided by controller as JSON strings
+        const labels = @Html.Raw(ViewData["AssetLabelsJson"] ?? "[]");
+        const dataValues = @Html.Raw(ViewData["AssetTotalsJson"] ?? "[]");
+
+        const ctx = document.getElementById('assetsChart').getContext('2d');
+        const assetsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Value (currency)',
+                    data: dataValues,
+                    backgroundColor: labels.map(() => 'rgba(54, 162, 235, 0.7)'),
+                    borderColor: labels.map(() => 'rgba(54, 162, 235, 1)'),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            // show values with default locale formatting
+                            callback: function(value, index, values) {
+                                return value.toLocaleString(undefined, { style: 'currency', currency: 'USD' });
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let v = context.parsed.y;
+                                return v.toLocaleString(undefined, { style: 'currency', currency: 'USD' });
+                            }
+                        }
+                    },
+                    legend: { display: false }
+                }
+            }
+        });
+    </script>
+}

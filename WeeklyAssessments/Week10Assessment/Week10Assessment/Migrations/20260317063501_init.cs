@@ -65,6 +65,12 @@ namespace Week10Assessment.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Account_AccountNumber",
+                table: "Account",
+                column: "AccountNumber",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Transaction_AccountId",
                 table: "Transaction",
                 column: "AccountId");

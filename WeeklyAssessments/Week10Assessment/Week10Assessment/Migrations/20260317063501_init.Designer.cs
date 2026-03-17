@@ -12,7 +12,7 @@ using Week10Assessment.Data;
 namespace Week10Assessment.Migrations
 {
     [DbContext(typeof(Week10AssessmentContext))]
-    [Migration("20260315180006_init")]
+    [Migration("20260317063501_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -44,6 +44,9 @@ namespace Week10Assessment.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AccountId");
+
+                    b.HasIndex("AccountNumber")
+                        .IsUnique();
 
                     b.ToTable("Account");
                 });

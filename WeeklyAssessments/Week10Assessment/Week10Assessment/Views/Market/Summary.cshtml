@@ -1,17 +1,42 @@
-﻿
+﻿@using Microsoft.AspNetCore.Mvc
+@using System.Linq 
+@using Week10Assessment.Controllers 
+
 @{
     ViewData["Title"] = "Summary";
+
+    // default market state = open
+    bool open = true;
+    ViewBag.MarketStatus = open ? "Open" : "Closed";
+    ViewBag.AlertClass = open ? "alert-success" : "alert-danger";
+
+    // compute top gainer from portfolio assets (by total value = Quantity * Price)
+    var assets = PortfolioController.Assets;
+    if (assets != null && assets.Count > 0)
+    {
+        var top = assets.OrderByDescending(a => (decimal)a.Quantity * a.Price).First();
+        decimal total = (decimal)top.Quantity * top.Price;
+        ViewData["TopGainer"] = $"{top.AssetName} — {total:C}";
+    }
+    else
+    {
+        ViewData["TopGainer"] = "No assets";
+    }
+
+    ViewData["Volume"] = 125550;
 }
 
 <h1>Summary</h1>
-<div class="alert alert-primary" role="alert">
+
+<div class="alert @ViewBag.AlertClass" role="alert">
     @ViewBag.MarketStatus
 </div>
+
 <div class="card" style="width: 18rem;">    
     <div class="card-body">
         <h5 class="card-title">Top Gainer</h5>
         <p class="card-text">@ViewData["TopGainer"]</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <a href="https://localhost:7215/Portfolio" class="btn btn-primary">Go to Assets List</a>
     </div>
 </div>
 

@@ -1,16 +1,48 @@
 ﻿@model IEnumerable<Week10Assessment.Models.Account>
+ 
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<style>
+    /* translucent green for credits, translucent red for debits */
+    .tx-credit { background-color: rgba(46, 204, 113, 0.10) !important; }
+    .tx-debit  { background-color: rgba(231, 76, 60, 0.10) !important; }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+    /* custom solid button colors */
+    .btn-teal {
+        background-color: #008080;
+        border-color: #007070;
+        color: #ffffff;
+    }
+    .btn-teal:hover,
+    .btn-teal:focus {
+        background-color: #006f6f;
+        border-color: #005f5f;
+        color: #ffffff;
+    }
+
+    .btn-soft-purple {
+        background-color: #7e57c2;
+        border-color: #6a3fb0;
+        color: #ffffff;
+    }
+    .btn-soft-purple:hover,
+    .btn-soft-purple:focus {
+        background-color: #6a3fb0;
+        border-color: #59369a;
+        color: #ffffff;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="m-0">Account Details</h1>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</div>
+
+<table class="table table-striped">
+    <thead class="table table-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.AccountNumber)
@@ -18,30 +50,99 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Balance)
-            </th>
+            <th>Opening Balance</th>
+            <th>Closing Balance</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccountNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Balance)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AccountId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AccountId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AccountId">Delete</a>
-            </td>
-        </tr>
-}
+        @{
+            int index = 0;
+        }
+        @foreach (var item in Model)
+        {
+            string collapseId = $"collapse{index}";
+            index++;
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.AccountNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                @{
+                    // compute opening and closing for the account (opening = stored Balance)
+                    double opening = Convert.ToDouble(item.Balance);
+                    double netChange = item.transactions?.Sum(t =>
+                        string.Equals(t.Category, "Credit", StringComparison.OrdinalIgnoreCase) ? t.Amount :
+                        string.Equals(t.Category, "Debit", StringComparison.OrdinalIgnoreCase) ? -t.Amount : 0.0
+                    ) ?? 0.0;
+                    double closing = opening + netChange;
+                }
+                <td>@opening.ToString("N2")</td>
+                <td>@closing.ToString("N2")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AccountId" class="btn btn-sm btn-teal">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.AccountId" class="btn btn-sm btn-soft-purple">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.AccountId" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="#" class="accordion-toggle btn btn-sm btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId"> Show transactions</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="5">
+                    <div id="@collapseId" class="collapse p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="mb-0">Transactions</h5>
+                            <a asp-controller="Transaction" asp-action="Create" asp-route-accountId="@item.AccountId" class="btn btn-sm btn-success">Create New</a>
+                        </div>
+
+                        <table class="table table-sm table-bordered">
+                            <thead class="table table-dark">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Debit/Credit</th>                                    
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (item.transactions != null && item.transactions.Count != 0)
+                                {
+                                   
+                                        // start running balance from opening
+                                        double running = Convert.ToDouble(item.Balance);
+                                        var txs = item.transactions.OrderBy(t => t.Date).ThenBy(t => t.TransactionId).ToList();
+                                  
+
+                                    @foreach (var transaction in txs)
+                                    {
+                                      
+                                            bool isCredit = string.Equals(transaction.Category, "Credit", StringComparison.OrdinalIgnoreCase);
+                                            double delta = isCredit ? transaction.Amount : -transaction.Amount;
+                                            running += delta;
+                                            string display = (isCredit ? "+" : "-") + transaction.Amount.ToString("N2");
+                                            string amountClass = isCredit ? "text-success" : "text-danger";
+                                            string rowClass = isCredit ? "tx-credit" : "tx-debit";
+                                      
+                                        <tr class="@rowClass">
+                                            <td>@(transaction.Date != default(DateTime) ? transaction.Date.ToString("yyyy-MM-dd") : "")</td>
+                                            <td>@transaction.Description</td>
+                                            <td>@transaction.Category</td>
+                                            <td><span class="@amountClass">@display</span></td>                                            
+                                            <td>@running.ToString("N2")</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="5" class="text-center">No transactions</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
+        }
     </tbody>
 </table>

@@ -22,7 +22,9 @@ namespace Week10Assessment.Controllers
         // GET: Account
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Account.ToListAsync());
+            var accounts = _context.Account
+                    .Include(a => a.transactions);
+            return View(await accounts.ToListAsync());
         }
 
         // GET: Account/Details/5
@@ -56,6 +58,11 @@ namespace Week10Assessment.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AccountId,AccountNumber,Name,Balance")] Account account)
         {
+            if (_context.Account.Any(a => a.AccountNumber == account.AccountNumber))
+            {
+                ModelState.AddModelError(nameof(account.AccountNumber), "Account number must be unique.");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(account);
@@ -91,6 +98,11 @@ namespace Week10Assessment.Controllers
             if (id != account.AccountId)
             {
                 return NotFound();
+            }
+
+            if (_context.Account.Any(a => a.AccountNumber == account.AccountNumber && a.AccountId != id))
+            {
+                ModelState.AddModelError(nameof(account.AccountNumber), "Account number must be unique.");
             }
 
             if (ModelState.IsValid)

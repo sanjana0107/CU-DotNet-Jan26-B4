@@ -15,7 +15,7 @@ namespace Week10Assessment.Controllers
         
         public IActionResult Analyze(string ticker, int? days)
         {
-            if(days == null)
+            if (days == null)
             {
                 days = 30;
             }

@@ -1,4 +1,6 @@
-﻿namespace Week10Assessment.Models
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
+namespace Week10Assessment.Models
 {
     public class Transaction
     {
@@ -15,6 +17,7 @@
 
         public int AccountId { get; set; }
 
+        [ValidateNever]
         public Account Account { get; set; }
     }
 }
