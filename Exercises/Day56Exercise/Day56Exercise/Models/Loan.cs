@@ -1,0 +1,23 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Day56Exercise.Models
+{
+    public class Loan
+    {
+        public int LoanId { get; set; }
+
+        [Required]
+        [Display(Name ="Borrower Name")]
+        public string BorrowerName { get; set; }
+
+        [Display(Name ="Lender Name")]
+        public string LenderName { get; set; }
+
+        [Range(1,500000)]
+        public double Amount { get; set; }
+
+        public bool IsSettled { get; set; }
+
+       
+    }
+}
