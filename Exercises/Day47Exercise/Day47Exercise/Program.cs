@@ -116,7 +116,7 @@
             {
                 Console.WriteLine(item);
             }
-            //heavy.ForEach(Console.WriteLine);
+            
 
             Console.WriteLine("\nCategory Counts:");
             foreach (var item in categoryCounts)

@@ -1,0 +1,100 @@
+﻿@model IEnumerable<CarManagementMVC.Models.Car>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Welcome!</h1>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+        background-color: #F8F7FF;
+    }
+
+    /* Action buttons */
+    .btn-action {
+        color: #fff;
+        border: none;
+        padding: .35rem .6rem;
+        font-size: .85rem;
+        line-height: 1;
+        border-radius: .25rem;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-create {
+        background: linear-gradient(to right, #ff0000, #8b0000); /* dark red */
+        color: #fff;
+        padding: .45rem .85rem;
+        border-radius: .35rem;
+        text-decoration: none;
+    }
+
+    .btn-edit {
+        background: #0d6efd; /* bootstrap primary blue */
+    }
+
+    .btn-details {
+        background: #0dcaf0; /* bootstrap info/cyan */
+        color: #042029;
+    }
+
+    .btn-delete {
+        background: #dc3545; /* bootstrap danger */
+    }
+
+    /* small spacing */
+    .me-1 { margin-right: .25rem; }
+    .mb-3 { margin-bottom: 1rem; }
+</style>
+
+<p>
+    <a asp-action="Create" class="btn-create">Create New</a>
+</p>
+<table class="table table-hover">
+    <thead class="table table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn-action btn-edit me-1">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn-action btn-details me-1">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn-action btn-delete">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

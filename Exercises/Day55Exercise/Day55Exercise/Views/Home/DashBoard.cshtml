@@ -3,22 +3,18 @@
     ViewData["Title"] = "DashBoard";
 }
 
-
-
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>Department - @ViewData["deptName"]</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="alert alert-primary" role="alert">
+    Department - @ViewData["deptName"]
 </div>
+
+
+
 
 <div class="alert alert-success" role="alert">
     <h4 class="alert-heading">Daily Updates!</h4>
     <p>
         @ViewBag.announcement Welcome to today’s update! Our team is continuously working to improve this website so that visitors can
-        enjoy a smoother and more helpful experience. Today we’ve made a few small improvements behind the scenes to 
-        enhance speed, navigation, and overall performance. We are also reviewing and updating existing content to 
-        ensure that everything remains accurate and useful for our readers. Your feedback and support help us keep 
-        improving this platform every day. We encourage you to explore the website and check back regularly, as new 
-        updates, features, and helpful information will continue to be added.
+        enjoy a smoother and more helpful experience.
     </p>
 </div>
 @{
