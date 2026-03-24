@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Product</h1>
+
+<form method="post" action="/Cart/AddToCart">
+    
+    <table>
+        <tr>
+            <td>
+                <label><strong>Enter Amount:</strong></label>
+            </td>
+            <td>
+                <input type="number" name="basePrice" placeholder="Enter the price" required />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label><strong>Select Promo Code:</strong></label>
+            </td>
+            <td>
+                <select name="promocode">
+                    <option value="">Select</option>
+                    <option value="WINTER25">WINTER25 (15% OFF)</option>
+                    <option value="FREESHIP">FREESHIP ($5 OFF)</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-primary">
+        Calculate
+    </button>
+</form>
