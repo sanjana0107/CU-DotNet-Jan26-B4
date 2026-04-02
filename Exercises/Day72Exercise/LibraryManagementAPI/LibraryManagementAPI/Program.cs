@@ -1,6 +1,7 @@
 
 using LibraryManagementAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace LibraryManagementAPI
 {
@@ -16,6 +17,15 @@ namespace LibraryManagementAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // 1. Configure Serilog
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information() // Log Info, Warning, and Error
+                .WriteTo.Console()          // Also show logs in the debug console
+                .WriteTo.File("logs/myapp-.txt", rollingInterval: RollingInterval.Day) // Save to file
+                .CreateLogger();
+
+            builder.Host.UseSerilog();
 
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -35,6 +45,7 @@ namespace LibraryManagementAPI
 
             app.UseAuthorization();
 
+            app.UseSerilogRequestLogging();
 
             app.MapControllers();
 

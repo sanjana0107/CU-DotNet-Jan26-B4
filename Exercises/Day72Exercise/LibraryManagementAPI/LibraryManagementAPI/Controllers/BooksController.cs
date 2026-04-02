@@ -16,16 +16,19 @@ namespace LibraryManagementAPI.Controllers
     public class BooksController : ControllerBase
     {
         private readonly MyAppDbContext _context;
+        private readonly ILogger<BooksController> _logger; 
 
-        public BooksController(MyAppDbContext context)
+        public BooksController(MyAppDbContext context, ILogger<BooksController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Books
         [HttpGet]
         public async Task<ActionResult> GetBooks()
         {
+            _logger.LogInformation("Getting information of all the books with author.");
             var book = await _context.Books
                  .Include(x => x.Author)
                  .Select(x => new
@@ -43,6 +46,7 @@ namespace LibraryManagementAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Book>> GetBook(int id)
         {
+            _logger.LogInformation($"getting information of book by {id}");
             var book = await _context.Books.FindAsync(id);
 
             if (book == null)
