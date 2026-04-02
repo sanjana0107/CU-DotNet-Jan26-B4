@@ -4,14 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using StudCourseManagementAPI;
 
 #nullable disable
 
-namespace StudCourseManagementAPI.Migrations
+namespace FluentAPI.Migrations
 {
-    [DbContext(typeof(StudentManagementAPIContext))]
-    [Migration("20260331150836_init")]
+    [DbContext(typeof(AppDbContext))]
+    [Migration("20260402062712_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -24,7 +23,7 @@ namespace StudCourseManagementAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("StudCourseManagementAPI.Models.Course", b =>
+            modelBuilder.Entity("FluentAPI.Models.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,7 +43,7 @@ namespace StudCourseManagementAPI.Migrations
                     b.ToTable("Courses", (string)null);
                 });
 
-            modelBuilder.Entity("StudCourseManagementAPI.Models.Student", b =>
+            modelBuilder.Entity("FluentAPI.Models.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,7 +71,7 @@ namespace StudCourseManagementAPI.Migrations
                     b.ToTable("Students", (string)null);
                 });
 
-            modelBuilder.Entity("StudCourseManagementAPI.Models.StudentCourse", b =>
+            modelBuilder.Entity("FluentAPI.Models.StudentCourse", b =>
                 {
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
@@ -87,15 +86,15 @@ namespace StudCourseManagementAPI.Migrations
                     b.ToTable("StudentCourses", (string)null);
                 });
 
-            modelBuilder.Entity("StudCourseManagementAPI.Models.StudentCourse", b =>
+            modelBuilder.Entity("FluentAPI.Models.StudentCourse", b =>
                 {
-                    b.HasOne("StudCourseManagementAPI.Models.Course", "Course")
+                    b.HasOne("FluentAPI.Models.Course", "Course")
                         .WithMany("StudentCourses")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StudCourseManagementAPI.Models.Student", "Student")
+                    b.HasOne("FluentAPI.Models.Student", "Student")
                         .WithMany("StudentCourses")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -106,12 +105,12 @@ namespace StudCourseManagementAPI.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("StudCourseManagementAPI.Models.Course", b =>
+            modelBuilder.Entity("FluentAPI.Models.Course", b =>
                 {
                     b.Navigation("StudentCourses");
                 });
 
-            modelBuilder.Entity("StudCourseManagementAPI.Models.Student", b =>
+            modelBuilder.Entity("FluentAPI.Models.Student", b =>
                 {
                     b.Navigation("StudentCourses");
                 });

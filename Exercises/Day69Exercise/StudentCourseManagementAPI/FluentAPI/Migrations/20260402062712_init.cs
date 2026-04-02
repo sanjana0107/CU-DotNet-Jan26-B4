@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace StudCourseManagementAPI.Migrations
+namespace FluentAPI.Migrations
 {
     /// <inheritdoc />
     public partial class init : Migration

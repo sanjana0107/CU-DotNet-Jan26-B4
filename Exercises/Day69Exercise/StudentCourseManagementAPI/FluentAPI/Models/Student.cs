@@ -1,15 +1,12 @@
-﻿namespace StudCourseManagementAPI.Models
+﻿namespace FluentAPI.Models
 {
     public class Student
     {
         public int Id { get; set; }
-
         public string Name { get; set; }
-
         public string Email { get; set; }
-
         public int Age { get; set; }
 
-        public IList<StudentCourse> StudentCourses { get; set; }
+        public ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
     }
 }
