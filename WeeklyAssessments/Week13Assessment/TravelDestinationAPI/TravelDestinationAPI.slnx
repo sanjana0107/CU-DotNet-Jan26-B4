@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="TravelDestination.MVC/TravelDestination.MVC.csproj" />
+  <Project Path="TravelDestinationAPI/TravelDestinationAPI.csproj" />
+</Solution>
