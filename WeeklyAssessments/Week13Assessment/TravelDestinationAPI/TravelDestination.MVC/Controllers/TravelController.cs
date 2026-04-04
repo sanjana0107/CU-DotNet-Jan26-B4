@@ -20,34 +20,21 @@ namespace TravelDestination.MVC.Controllers
             return View(data);
         }
 
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-        //public async Task<IActionResult> Create(Destination dto)
-        //{
-        //    await _service.CreateAsync(dto);
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Create(Destination dto)
+        {
+            if (!ModelState.IsValid)
+                return View(dto);
+            await _service.CreateAsync(dto);
+            return RedirectToAction("Index");
+        }
 
-        //public async Task<IActionResult> Edit(int id)
-        //{
-        //    var data = await _service.GetByIdAsync(id);
-        //    return View(data);
-        //}
 
-        //[HttpPost]
-        //public async Task<IActionResult> Edit(int id, Destination dto)
-        //{
-        //    await _service.UpdateAsync(id, dto);
-        //    return RedirectToAction("Index");
-        //}
-
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    await _service.DeleteAsync(id);
-        //    return RedirectToAction("Index");
-        //}
     }
 }

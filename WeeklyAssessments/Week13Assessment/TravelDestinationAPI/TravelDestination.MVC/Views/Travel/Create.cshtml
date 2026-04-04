@@ -1,13 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@model Destination
+﻿@model Destination
 
-<form asp-action="Create">
-    <input asp-for="CityName" placeholder="City" />
-    <input asp-for="Country" placeholder="Country" />
-    <input asp-for="Description" placeholder="Description" />
-    <input asp-for="Rating" placeholder="Rating" />
-    <button type="submit">Save</button>
-</form>
+<div class="form-card">
+    <h3 class="text-center mb-3">Add Destination</h3>
 
+    <form asp-action="Create">
+
+        <input asp-for="CityName" class="form-control" placeholder="City" />
+        
+        <input asp-for="Country" class="form-control" placeholder="Country" />
+        
+        <input asp-for="Description" class="form-control" placeholder="Description" />
+        
+        <input asp-for="Rating" class="form-control" placeholder="Rating (1-5)" />
+
+        <button type="submit" class="btn btn-submit mt-2">Save</button>
+
+    </form>
+</div>

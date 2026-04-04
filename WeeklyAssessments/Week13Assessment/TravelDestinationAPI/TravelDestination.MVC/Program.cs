@@ -13,7 +13,6 @@ namespace TravelDestination.MVC
 
             builder.Services.AddHttpClient<IDestinationService, DestinationService>(client => client.BaseAddress = new Uri("https://localhost:7279"));
 
-            builder.Services.AddScoped<IDestinationService, DestinationService>();
 
             var app = builder.Build();
 
@@ -34,7 +33,7 @@ namespace TravelDestination.MVC
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Travel}/{action=Index}/{id?}");
 
             app.Run();
         }

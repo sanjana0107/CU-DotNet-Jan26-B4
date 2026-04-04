@@ -24,8 +24,7 @@ namespace TravelDestinationAPI.Services
                 LastVisited = DateTime.Now
             };
 
-             return await _repository.AddAsync(destination);
-            
+             return await _repository.AddAsync(destination);            
         }
 
         public async Task DeleteAsync(int id)

@@ -1,31 +1,28 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@model IEnumerable<Destination>
+﻿@model IEnumerable<Destination>
 
-<h2>Destinations</h2>
+<h2 class="mb-3">Destinations</h2>
 
-<a asp-action="Create">Add New</a>
+<a asp-action="Create" class="btn btn-create mb-3">
+    + Add New
+</a>
 
-<table class="table">
-    <tr>
-        <th>City</th>
-        <th>Country</th>
-        <th>Rating</th>
-        <th>Actions</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table table-hover">
+    <thead>
         <tr>
-            <td>@item.CityName</td>
-            <td>@item.Country</td>
-            <td>@item.Rating</td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            <th>City</th>
+            <th>Country</th>
+            <th>Rating</th>
         </tr>
-    }
-</table>
+    </thead>
 
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CityName</td>
+                <td>@item.Country</td>
+                <td>@item.Rating</td>
+            </tr>
+        }
+    </tbody>
+</table>

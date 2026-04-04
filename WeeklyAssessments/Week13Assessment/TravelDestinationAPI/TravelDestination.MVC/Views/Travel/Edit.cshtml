@@ -1,15 +1,36 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Destination
 
-@model Destination
+<div class="form-card">
+    <h3 class="text-center mb-3">Edit Destination</h3>
 
-<form asp-action="Edit">
-    <input type="hidden" asp-for="Id" />
-    <input asp-for="CityName" />
-    <input asp-for="Country" />
-    <input asp-for="Description" />
-    <input asp-for="Rating" />
-    <button type="submit">Update</button>
-</form>
+    <form asp-action="Edit">
 
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label>City</label>
+            <input asp-for="CityName" class="form-control" />
+            <span asp-validation-for="CityName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Country</label>
+            <input asp-for="Country" class="form-control" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <input asp-for="Description" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label>Rating (1-5)</label>
+            <input asp-for="Rating" class="form-control" />
+            <span asp-validation-for="Rating" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-submit mt-3">Update</button>
+
+    </form>
+</div>
