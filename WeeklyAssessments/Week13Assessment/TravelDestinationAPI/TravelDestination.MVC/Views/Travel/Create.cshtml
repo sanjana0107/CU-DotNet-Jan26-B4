@@ -1,19 +1,86 @@
 ﻿@model Destination
+<style>   
+    .form-container {
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-<div class="form-card">
-    <h3 class="text-center mb-3">Add Destination</h3>
+    .form-card {
+        width: 400px;
+        padding: 25px;
+        border-radius: 15px;
+        background: white;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
 
-    <form asp-action="Create">
+        .form-card h3 {
+            font-weight: bold;
+            color: #0d47a1;
+        }
 
-        <input asp-for="CityName" class="form-control" placeholder="City" />
-        
-        <input asp-for="Country" class="form-control" placeholder="Country" />
-        
-        <input asp-for="Description" class="form-control" placeholder="Description" />
-        
-        <input asp-for="Rating" class="form-control" placeholder="Rating (1-5)" />
+    .form-control {
+        border-radius: 10px;
+        margin-bottom: 12px;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
 
-        <button type="submit" class="btn btn-submit mt-2">Save</button>
+    
+    .form-group label {
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
 
-    </form>
+    
+    .btn-submit {
+        width: 100%;
+        border-radius: 25px;
+        padding: 10px;
+        background: linear-gradient(90deg, #2196f3, #0d47a1);
+        color: white;
+        font-weight: bold;
+        border: none;
+    }
+
+        .btn-submit:hover {
+            transform: scale(1.05);
+            transition: 0.2s;
+        }
+
+</style>
+
+<div class="form-container">
+    <div class="form-card">
+        <h3 class="text-center mb-3">Add Destination</h3>
+
+        <form asp-action="Create">
+
+            <div class="form-group">
+                <label>City</label>
+                <input asp-for="CityName" class="form-control" placeholder="Enter city" />
+            </div>
+
+            <div class="form-group">
+                <label>Country</label>
+                <input asp-for="Country" class="form-control" placeholder="Enter country" />
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <input asp-for="Description" class="form-control" placeholder="Enter description" />
+            </div>
+
+            <div class="form-group">
+                <label>Rating</label>
+                <input asp-for="Rating" class="form-control" placeholder="1 - 5" />
+            </div>
+
+            <button type="submit" class="btn btn-submit mt-3">
+                Save Destination
+            </button>
+
+        </form>
+    </div>
 </div>
