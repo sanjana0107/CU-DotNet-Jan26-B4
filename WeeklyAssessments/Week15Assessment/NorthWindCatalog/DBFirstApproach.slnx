@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="DBFirstApproach/NorthWind.Services.csproj" />
+  <Project Path="NorthWind.MVC/NorthWind.MVC.csproj" />
+  <Project Path="NorthWind.XUnitTesting/NorthWind.XUnitTesting.csproj" />
+</Solution>

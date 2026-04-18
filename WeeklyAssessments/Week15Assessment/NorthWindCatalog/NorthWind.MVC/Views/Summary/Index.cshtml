@@ -1,0 +1,30 @@
+﻿@using NorthWind.Services.DTOs
+@model IEnumerable<CategorySummaryDto>
+
+@{
+    ViewData["Title"] = "Category Summary";
+}
+
+<h2 class="mb-4">Category Summary</h2>
+
+<table class="table table-bordered table-striped table-hover"> 
+    <thead class="table-dark">
+        <tr>
+            <th>Category</th>
+            <th>Product Count</th>
+            <th>Average Price</th>
+            <th>Most Expensive Product</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryName</td>
+                <td>@item.ProductCount</td>
+                <td>₹@item.AvgPrice</td>
+                <td>@item.MostExpensiveProduct</td>
+            </tr>
+        }
+    </tbody>
+</table>
