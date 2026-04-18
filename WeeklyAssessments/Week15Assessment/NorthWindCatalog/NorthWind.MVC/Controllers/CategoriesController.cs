@@ -18,6 +18,4 @@ namespace NorthWind.MVC.Controllers
             return View(data);
         }
     }
-
-
 }
