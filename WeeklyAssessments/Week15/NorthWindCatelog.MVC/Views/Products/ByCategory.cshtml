@@ -1,0 +1,39 @@
+﻿@using NorthWindCatelog.MVC.DTOs
+@model List<ProductDto>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2 class="mb-4">Products</h2>
+
+<div class="row">
+    @foreach (var p in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card border-primary shadow-sm h-100">
+
+                <div class="card-body">
+                    <h5 class="card-title">@p.ProductName</h5>
+
+                    <p class="mb-1">
+                        <strong>Price:</strong> ₹@p.UnitPrice
+                    </p>
+
+                    <p class="mb-1">
+                        <strong>Stock:</strong> @p.UnitsInStock
+                    </p>
+
+                    <p class="text-success fw-bold">
+                        Inventory Value: ₹@(p.UnitPrice* p.UnitsInStock)
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+
+<a href="@Url.Action("Index", "Categories")" class="btn btn-secondary mt-3">
+    ← Back to Categories
+</a>
